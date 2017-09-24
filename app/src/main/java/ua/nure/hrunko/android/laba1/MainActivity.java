@@ -3,6 +3,7 @@ package ua.nure.hrunko.android.laba1;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 
@@ -14,8 +15,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onMyButtonClick(View view) {
-        Intent intent = new Intent(MainActivity.this, RGB.class);
-        startActivity(intent);
+    public void onRGB(View view) {
+        Intent rgbActivity = new Intent(getApplicationContext(), RGB.class);
+        startActivity(rgbActivity);
+    }
+
+    public void onCalculator(View view) {
+        Intent calcActivity = new Intent(getApplicationContext(), Calculator.class);
+        startActivity(calcActivity);
     }
 }

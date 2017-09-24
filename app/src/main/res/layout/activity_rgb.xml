@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp">
 
         <SurfaceView
-            android:id="@+id/surface"
+            android:id="@+id/surface1"
             android:layout_width="match_parent"
             android:layout_height="296dp"
             tools:layout_editor_absoluteX="8dp"
@@ -22,7 +22,8 @@
             android:layout_alignParentTop="true" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/blueBar"
+            android:max="255"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -30,20 +31,50 @@
             android:layout_marginBottom="15dp" />
 
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/greenBar"
+            android:max="255"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="47dp"
-            android:layout_above="@+id/seekBar"
+            android:layout_above="@+id/blueBar"
             android:layout_alignParentStart="true" />
 
         <SeekBar
-            android:id="@+id/seekBar3"
+            android:id="@+id/redBar"
+            android:max="255"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/seekBar2"
+            android:layout_above="@+id/greenBar"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="50dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red"
+            android:layout_marginStart="18dp"
+            android:layout_above="@+id/redBar"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green"
+            android:layout_above="@+id/greenBar"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/blueBar"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_marginBottom="11dp"
+            android:text="Blue" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
