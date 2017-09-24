@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent calcActivity = new Intent(getApplicationContext(), Calculator.class);
         startActivity(calcActivity);
     }
+
+    public void onNote(View view) {
+        Intent calcActivity = new Intent(getApplicationContext(), Notes.class);
+        startActivity(calcActivity);
+    }
 }

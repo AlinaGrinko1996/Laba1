@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RGB" />
-        <activity android:name=".Calculator"></activity>
+        <activity android:name=".Calculator" />
+        <activity android:name=".Notes"></activity>
     </application>
 
 </manifest>
