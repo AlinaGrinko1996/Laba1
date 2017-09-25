@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -14,10 +15,36 @@ import android.widget.Toast;
 public class Notes extends ListActivity {
     public void onCreate(Bundle icicle) {
             super.onCreate(icicle);
-            Note[] values = new Note[] {new Note("name", "description", Importance.CRITICAL), new Note("name2", "description2", Importance.MINOR)};
+            Note[] values = new Note[] {
+                    new Note("name", "description", Importance.CRITICAL),
+                    new Note("name2", "description2", Importance.MINOR),
+                    new Note("name", "description", Importance.AVARAGE),
+                    new Note("name2", "description2", Importance.MINOR)};
 
-            MySimpleArreyAdapter adapter = new MySimpleArreyAdapter(this, values);
-            setListAdapter(adapter);
+
+        View header = getLayoutInflater().inflate(R.layout.header, null);
+        ListView listView = getListView();
+        listView.addHeaderView(header);
+//        setListAdapter(new ArrayAdapter<Note>(this,
+//                android.R.layout.row,
+//                android.R.id.text1, values));
+
+        MySimpleArreyAdapter adapter = new MySimpleArreyAdapter(this, values);
+        setListAdapter(adapter);
+        ListView list = getListView();
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                Toast.makeText(Notes.this,
+                        "Item in position " + position + " clicked",
+                        Toast.LENGTH_LONG).show();
+                // Возвращает "истину", чтобы завершить событие клика, чтобы
+                // onListItemClick больше не вызывался
+                return true;
+            }
+        });
     }
 
     @Override
