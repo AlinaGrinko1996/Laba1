@@ -14,9 +14,8 @@ import android.widget.Toast;
 public class Notes extends ListActivity {
     public void onCreate(Bundle icicle) {
             super.onCreate(icicle);
-            String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                    "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                    "Linux", "OS/2" };
+            Note[] values = new Note[] {new Note("name", "description", Importance.CRITICAL), new Note("name2", "description2", Importance.MINOR)};
+
             MySimpleArreyAdapter adapter = new MySimpleArreyAdapter(this, values);
             setListAdapter(adapter);
     }
