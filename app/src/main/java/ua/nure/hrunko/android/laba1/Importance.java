@@ -5,7 +5,5 @@ package ua.nure.hrunko.android.laba1;
  */
 
 public enum Importance {
-    CRITICAL,
-    AVARAGE,
-    MINOR
+    CRITICAL, AVARAGE, MINOR
 }

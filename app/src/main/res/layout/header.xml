@@ -13,6 +13,7 @@
         android:id="@+id/add"
         android:layout_width="58dp"
         android:layout_height="match_parent"
+        android:onClick="onAddNote"
         android:src="@drawable/add" />
 
     <EditText
@@ -25,24 +26,28 @@
         android:id="@+id/serch"
         android:layout_width="89dp"
         android:layout_height="match_parent"
+        android:onClick="onSearch"
         android:src="@drawable/search" />
 
     <ImageView
         android:id="@+id/criticalfilter"
         android:layout_width="100dp"
         android:layout_height="match_parent"
+        android:onClick="onFilterCritical"
         android:src="@drawable/critical" />
 
     <ImageView
         android:id="@+id/highfilter"
         android:layout_width="72dp"
         android:layout_height="match_parent"
+        android:onClick="onFilterAverage"
         android:src="@drawable/high" />
 
     <ImageView
         android:id="@+id/lowfilter"
         android:layout_width="84dp"
         android:layout_height="match_parent"
+        android:onClick="onFilterLow"
         android:src="@drawable/low" />
 
 </LinearLayout>

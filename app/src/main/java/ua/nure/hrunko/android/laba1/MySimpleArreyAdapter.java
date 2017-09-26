@@ -5,6 +5,9 @@ package ua.nure.hrunko.android.laba1;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class MySimpleArreyAdapter extends ArrayAdapter<Note> {
     private final Context context;
-    private final Note[] values;
+    private final List<Note> values;
+    private ImageView image;
 
-    public MySimpleArreyAdapter(Context context, Note[] values) {
+    public MySimpleArreyAdapter(Context context, List<Note> values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
@@ -30,9 +37,10 @@ public class MySimpleArreyAdapter extends ArrayAdapter<Note> {
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         TextView timeView = (TextView) rowView.findViewById(R.id.timestamp);
         ImageView iconView = (ImageView) rowView.findViewById(R.id.icon);
+        image = (ImageView) rowView.findViewById(R.id.logo);
 
-        Note current = values[position];
-        textView.setText(current.name);
+        Note current = values.get(position);
+        textView.setText(current.name + "                 " +current.description);
 
         if (current.importance == Importance.CRITICAL) {
             iconView.setImageResource(R.drawable.critical);
@@ -43,7 +51,15 @@ public class MySimpleArreyAdapter extends ArrayAdapter<Note> {
         else {
             iconView.setImageResource(R.drawable.low);
         }
-        timeView.setText(current.time.toString());
+        try {
+            if (current.image != null ) {
+                final Bitmap selectedImage = current.image;
+                image.setImageBitmap(selectedImage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        timeView.setText(current.time);
 
         return rowView;
     }

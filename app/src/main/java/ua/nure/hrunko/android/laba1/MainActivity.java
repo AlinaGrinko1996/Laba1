@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNote(View view) {
-        Intent calcActivity = new Intent(getApplicationContext(), Edit.class);
+        Intent calcActivity = new Intent(getApplicationContext(), Notes.class);
         startActivity(calcActivity);
     }
 }

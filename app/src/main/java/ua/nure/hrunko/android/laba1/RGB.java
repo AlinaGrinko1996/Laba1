@@ -22,6 +22,14 @@ public class RGB extends AppCompatActivity {
         Log.d("------------->","after start activity");
         SurfaceView surface = (SurfaceView) findViewById(R.id.surface1);
 
+        mRedSeekBar = (SeekBar) findViewById(R.id.redBar);
+        mGreenSeekBar = (SeekBar) findViewById(R.id.greenBar);
+        mBlueSeekBar = (SeekBar) findViewById(R.id.blueBar);
+
+        mRedSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        mGreenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        mBlueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+
         mBlueSeekBar.setProgress(0);
         mRedSeekBar.setProgress(0);
         mGreenSeekBar.setProgress(0);
@@ -42,14 +50,6 @@ public class RGB extends AppCompatActivity {
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
         });
-
-        mRedSeekBar = (SeekBar) findViewById(R.id.redBar);
-        mGreenSeekBar = (SeekBar) findViewById(R.id.greenBar);
-        mBlueSeekBar = (SeekBar) findViewById(R.id.blueBar);
-
-        mRedSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-        mGreenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-        mBlueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
     }
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
