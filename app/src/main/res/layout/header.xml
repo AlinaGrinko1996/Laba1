@@ -18,7 +18,7 @@
 
     <EditText
         android:id="@+id/text_input"
-        android:layout_width="360dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:inputType="text" />
 
@@ -31,21 +31,21 @@
 
     <ImageView
         android:id="@+id/criticalfilter"
-        android:layout_width="100dp"
+        android:layout_width="54dp"
         android:layout_height="match_parent"
         android:onClick="onFilterCritical"
         android:src="@drawable/critical" />
 
     <ImageView
         android:id="@+id/highfilter"
-        android:layout_width="72dp"
+        android:layout_width="54dp"
         android:layout_height="match_parent"
         android:onClick="onFilterAverage"
         android:src="@drawable/high" />
 
     <ImageView
         android:id="@+id/lowfilter"
-        android:layout_width="84dp"
+        android:layout_width="54dp"
         android:layout_height="match_parent"
         android:onClick="onFilterLow"
         android:src="@drawable/low" />
