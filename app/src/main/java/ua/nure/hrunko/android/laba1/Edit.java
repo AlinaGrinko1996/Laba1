@@ -1,7 +1,9 @@
 package ua.nure.hrunko.android.laba1;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +42,8 @@ public class Edit extends AppCompatActivity {
 
     public Note currentNote;
     public Bitmap image;
+
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +103,8 @@ public class Edit extends AppCompatActivity {
                 startActivityForResult(photoPickerIntent, SELECT_PHOTO);
             }
         });
+
+        dbHelper = new DBHelper(this);
     }
 
     public void setFieldsNote(Note input) {
@@ -157,6 +163,7 @@ public class Edit extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
                     try {
                         final Uri imageUri = imageReturnedIntent.getData();
+                        currentNote.imageUri = imageUri.toString();
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         image = selectedImage;
@@ -184,11 +191,13 @@ public class Edit extends AppCompatActivity {
         currentNote.description = descr.getText().toString();
 
         Intent calcActivity = new Intent(getApplicationContext(), Notes.class);
-        if (Storage.field != null ) {
-            Log.d("Storage.size1()----->", Storage.field.size() + "");
-            Storage.field.add(currentNote);
-            Log.d("Storage.size2()----->", Storage.field.size() + "");
-        }
+       // if (Storage.field != null ) {
+        //    Log.d("Storage.size1()----->", Storage.field.size() + "");
+        //   Storage.field.add(currentNote);
+            Storage.Insert(currentNote, dbHelper, getContentResolver());
+            Log.d("after insert", currentNote.name);
+       //    Log.d("Storage.size2()----->", Storage.field.size() + "");
+      //  }
         startActivity(calcActivity);
     }
 

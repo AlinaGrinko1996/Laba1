@@ -23,10 +23,13 @@ public class Notes extends ListActivity {
     TextView text;
     View header;
 
+    DBHelper dbHelper;
+
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-
+        dbHelper = new DBHelper(this);
+        values = new ArrayList<>();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null &&  !extras.isEmpty()) {
@@ -35,21 +38,28 @@ public class Notes extends ListActivity {
             if (extras.containsKey("image")) {
                 currentNote.image = intent.getParcelableExtra("image");
             }
-            if (Storage.field != null ) {
-                values = Storage.field;
-            }
+          //  if (Storage.field != null ) {
+            //    values = Storage.field;
+                values = Storage.GetAll(dbHelper, getContentResolver());
+          //  }
         //    values.add(currentNote);
-        } else if (Storage.field == null) {
-            values = new ArrayList<Note>();
-            values.add(new Note("name1", "description1", Importance.CRITICAL.toString()));
-            values.add(new Note("name2", "description2", Importance.MINOR.toString()));
-            values.add(new Note("name3", "description3", Importance.AVARAGE.toString()));
-            values.add(new Note("name4", "description4", Importance.MINOR.toString()));
-            Storage.field=values;
         }
-        else {
-            values = Storage.field;
+        else
+        {
+//            values = new ArrayList<Note>();
+//            Note note = new Note("name1", "description1", Importance.CRITICAL.toString());
+//            values.add(note);
+//            Storage.Insert(note, dbHelper);
+
+//            values.add(new Note("name2", "description2", Importance.MINOR.toString()));
+//            values.add(new Note("name3", "description3", Importance.AVARAGE.toString()));
+//            values.add(new Note("name4", "description4", Importance.MINOR.toString()));
+         //   Storage.field=values;
+            values = Storage.GetAll(dbHelper, getContentResolver());
         }
+//        else {
+//            values = Storage.GetAll(dbHelper);
+//        }
 
         header = getLayoutInflater().inflate(R.layout.header, null);
         ListView listView = getListView();
@@ -70,8 +80,10 @@ public class Notes extends ListActivity {
                 bundle.putString("timestamp", values.get(position-1).time);
                 bundle.putString("importance", values.get(position-1).importance.toString());
                 calcActivity.putExtras(bundle);
+                Note note = values.get(position-1);
                 values.remove(position-1);
-                Storage.field = values;
+                Storage.Delete(note, dbHelper);
+              //  Storage.field = values;
                 startActivity(calcActivity);
                 return true;
             }

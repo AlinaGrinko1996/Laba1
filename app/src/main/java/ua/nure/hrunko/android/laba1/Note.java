@@ -10,10 +10,12 @@ import java.sql.Timestamp;
  */
 
 public class Note{
+    public int id;
     public String name;
     public String description;
     public Importance importance;
     public String time;
+    public String imageUri;
 
     Bitmap image;
 
